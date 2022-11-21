@@ -5,14 +5,25 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080'}),
+    tagTypes: ['Posts', 'Members'],
     endpoints: (builder) => ({
         getAllProducts: builder.query({
-            query: () => '/product/getAllProducts'
+            query: () => '/product/getAllProducts',
+            providesTags: ['Products']
+        }),
+        createProduct: builder.mutation({
+            query: (product) => ({
+                url: '/product/createProduct',
+                method: 'POST',
+                body: product
+            }),
+            invalidatesTags: ['Products']
         }),
         getAllMembers: builder.query({
-            query: () => '/member/getAllMembers'
-        })
+            query: () => '/member/getAllMembers',
+            invalidatesTags: ['Members']
+        }),
     })
 })
 
-export const { useGetAllProductsQuery, useGetAllMembersQuery } = api
+export const { useGetAllProductsQuery, useGetAllMembersQuery, useCreateProductMutation } = api

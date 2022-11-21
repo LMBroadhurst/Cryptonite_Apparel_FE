@@ -1,17 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Header from '../components/Header'
 import { useGetAllMembersQuery, useGetAllProductsQuery } from '../features/api/apiSlice'
+import AddProduct from './AddProduct'
 
-const defaultNewProduct = {
-    name: '',
-    price: 0,
-    quantity: 0,
-    size: '',
-    ownedByMembers: []
-}
 
 const AdminPage = () => {
-
-    const [newProduct, setNewProduct] = useState(defaultNewProduct)
 
   const { data: members, isLoading: memberLoading } = useGetAllMembersQuery()
   const { data: products, isLoading: productLoading } = useGetAllProductsQuery()
@@ -22,7 +15,9 @@ const AdminPage = () => {
 
   return (
     <section>
-        <div className='flex flex-col items-center gap-20'>
+        <Header />
+        <div className='flex flex-col items-center gap-5'>
+        
             <h2>Administrator page</h2>
 
             <div className='flex flex-row gap-10'>
@@ -42,17 +37,10 @@ const AdminPage = () => {
                     </div>
                 </div>
 
-                <form className='flex flex-col gap-5'>
+                <div className='flex flex-col gap-5 w-72'>
                     <h3>Create Product</h3>
-
-                    <div className='flex flex-col gap-1'>
-                        <input className='border-2 border-blue-300' type="text" value={defaultNewProduct.name} name={'name'} placeholder={'Product name'} />
-                        <input className='border-2 border-blue-300' type="text" value={defaultNewProduct.size} name={'size'} placeholder={'Size'} />
-                        <input className='border-2 border-blue-300' type="text" value={defaultNewProduct.name} name={'name'} placeholder={'Product name'} />
-                        <input className='border-2 border-blue-300' type="text" value={defaultNewProduct.name} name={'name'} placeholder={'Product name'} />
-                        
-                    </div>
-                </form>
+                    <AddProduct />
+                </div>
             </div>
 
         </div>
