@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { productApi } from '../features/product/productSlice'
+import { api } from '../features/api/apiSlice'
 
 
 export const store = configureStore({
     reducer: {
-        [productApi.reducerPath]: productApi.reducer
+        [api.reducerPath]: api.reducer,
     },
-    middleware: (gDM) => gDM().concat(productApi.middleware)
+    middleware: (gDM) => gDM().concat(api.middleware),
 })
