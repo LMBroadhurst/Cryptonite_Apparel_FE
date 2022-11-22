@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useCreateProductMutation } from '../features/api/apiSlice'
+import { useCreateProductMutation } from '../api/apiSlice'
 
 const defaultNewProduct = {
     name: '',

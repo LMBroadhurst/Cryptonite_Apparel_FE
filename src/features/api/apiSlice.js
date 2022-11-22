@@ -30,7 +30,34 @@ export const api = createApi({
             query: () => '/member/getAllMembers',
             invalidatesTags: ['Members']
         }),
+        getMemberById: builder.query({
+            query: (memberId) => `/member/getMemberById/${memberId}`,
+            invalidatesTags: ['Members']
+        }),
+        createMember: builder.mutation({
+            query: (member) => ({
+                url: '/member/createMember',
+                method: 'POST',
+                body: member
+            }),
+            invalidatesTags: ['Members']
+        }),
+        deleteMember: builder.mutation({
+            query: (memberId) => ({
+                url: `/member/deleteMember/${memberId}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['Members']
+        }),
     })
 })
 
-export const { useGetAllProductsQuery, useGetAllMembersQuery, useCreateProductMutation, useDeleteProductMutation } = api
+export const { 
+    useGetAllProductsQuery,
+    useGetAllMembersQuery, 
+    useCreateProductMutation, 
+    useDeleteProductMutation, 
+    useCreateMemberMutation, 
+    useDeleteMemberMutation,
+    useGetMemberByIdQuery
+} = api

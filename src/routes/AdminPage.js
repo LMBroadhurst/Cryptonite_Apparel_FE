@@ -2,7 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import { useGetAllMembersQuery, useGetAllProductsQuery } from '../features/api/apiSlice'
 import AdminProductCard from '../features/product/AdminProductCard'
-import AddProduct from './AddProduct'
+import AddProduct from '../features/product/AddProduct'
+import AdminUserCard from '../features/users/AdminUserCard'
 
 
 const AdminPage = () => {
@@ -11,7 +12,7 @@ const AdminPage = () => {
   const { data: products, isLoading: productLoading } = useGetAllProductsQuery()
 
   const productsList = productLoading ? 'Loading...' : products.map((product, i) => <AdminProductCard key={i} product={product} />)
-  const membersList = memberLoading ? 'Loading...' : members.map((member, i) => <span key={i}>{member.email}</span>)
+  const membersList = memberLoading ? 'Loading...' : members.map((member, i) => <AdminUserCard key={i} member={member} />)
   
 
   return (
