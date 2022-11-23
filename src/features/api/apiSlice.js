@@ -49,6 +49,14 @@ export const api = createApi({
             }),
             invalidatesTags: ['Members']
         }),
+        editMember: builder.mutation({
+            query: (member) => ({
+                url: `/member/editMember/3`,
+                method: 'PUT',
+                body: member
+            }),
+            invalidatesTags: ['Members']
+        })
     })
 })
 
@@ -59,5 +67,6 @@ export const {
     useDeleteProductMutation, 
     useCreateMemberMutation, 
     useDeleteMemberMutation,
-    useGetMemberByIdQuery
+    useGetMemberByIdQuery,
+    useEditMemberMutation
 } = api

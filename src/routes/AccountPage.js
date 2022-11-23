@@ -8,12 +8,11 @@ const AccountPage = () => {
 
     const  { data: members } = useGetAllMembersQuery()
     const member = members?.find((member, i) => member.id === 3)
-    // const { firstName, lastName, email, productsOwned } = member
     
     const allProductsOwned = () => {
-        const { productsOwned } = member
 
         if (member) {
+            const { productsOwned } = member
             return (
                 productsOwned.map((product, index) => <ProductCard key={index} product={product} />)
             )
